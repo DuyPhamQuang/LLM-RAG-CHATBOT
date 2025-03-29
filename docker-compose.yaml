@@ -1,0 +1,77 @@
+services:
+  database:
+    # postgres with the pgvector extension
+    image: pgvector/pgvector:pg16
+    container_name: LLMRAGCHATBOT_DB
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "6024:5432"
+    volumes:
+      - postgresdata_pgvector:/var/lib/postgresql/data
+    networks:
+      - backend
+
+  ollama-gpu:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    container_name: LLMRAGCHATBOT_OLLAMA
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    volumes:
+      - ollama-local:/root/.ollama
+    networks:
+      - backend
+
+  backend:
+    build: backend
+    container_name: LLMRAGCHATBOT_Backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/app:/code/app
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL}
+    depends_on:
+      - database
+      - ollama-gpu
+    networks:
+      - backend
+      - UI
+
+  frontend:
+    build: frontend
+    container_name: LLMRAGCHATBOT_Frontend
+    ports:
+      - "8501:8501"
+    environment:
+      BACKEND_URL: ${BACKEND_URL}
+    volumes:
+      - ./frontend/app:/code/app
+    depends_on:
+      - backend
+    networks:
+      - UI
+
+networks:
+    backend:
+      driver: bridge
+    UI:
+      driver: bridge
+
+volumes:
+  postgresdata_pgvector:
+    external: true
+  ollama-local:
+    external: true

@@ -1,0 +1,15 @@
+langchain
+langchain-ollama
+langchain-core
+langchain_community
+docx2txt
+pypdf
+langchain_postgres
+python-multipart
+fastapi[standard]
+pydantic
+pydantic-settings
+uvicorn
+SQLAlchemy
+psycopg[binary,pool]
+python-dotenv
