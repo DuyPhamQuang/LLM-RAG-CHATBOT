@@ -1,6 +1,6 @@
 # LLM RAG CHATBOT
 
-A personal project that integrates a large language model with a retrieval-augmented generation (RAG) approach to provide context-aware chatbot responses. This project leverages FastAPI for the backend, LangChain for LLM integration and RAG chain implementation, Streamlit for the frontend, PostgreSQL with PGVector for document indexing, and Ollama for running the LLM locally. It is deployed using Docker Compose.
+This project implements a chatbot that generates context-aware responses using a retrieval-augmented generation (RAG) approach. By retrieving relevant information from vector database, the chatbot enhances accuracy, reduces hallucinations, and improves response quality. The language model runs locally for security, and the entire application is containerized for easy deployment.
 
 ## Table of Contents
 
