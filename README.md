@@ -37,36 +37,37 @@ The system is split into two main components:
   - [Docker Compose](https://docs.docker.com/compose/) – Container orchestration
 
 ## File Structure
-```bash
-LLM_RAG_CHATBOT/
-│
-├───backend/
-│   │___dockerfile
-│   │___requirements.txt
-│   │
-│   └───app/
-│       │__.env_example         # Example file, rename to .env
-│       │___db_utils.py         # Handles database operations
-│       │___langchain_utils.py  # Implements the LangChain-specific logic
-│       │___main.py             # Entry point of FastAPI application, defines the API routes    
-│       │___pgvector_utils.py   # Interacts with the PGVector vector store
-│       │___pydantic_models.py  # Defines Pydantic models for request and response validation
-│       │___settings.py         
-│
-│───frontend/
-│    │___dockerfile
-│    │___requirements.txt
-│    │
-│    └───app/
-│        │___api_utils.py       # Interacts with FastAPI backend
-│        │___chat_interface.py  # Chat interaction
-│        │___sidebar.py         # Handles document management and model selection:
-│        │___streamlit_app.py   # Entry point for Streamlit application   
-│      
-│___.env_example        # Example file, rename to .env
-│___.gitignore
-│___docker-compose.yaml  # Service orchestration
-│___README
+    ```bash
+    LLM_RAG_CHATBOT/
+    │
+    ├───backend/
+    │   │___dockerfile
+    │   │___requirements.txt
+    │   │
+    │   └───app/
+    │       │__.env_example         # Example file, rename to .env
+    │       │___db_utils.py         # Handles database operations
+    │       │___langchain_utils.py  # Implements the LangChain-specific logic
+    │       │___main.py             # Entry point of FastAPI application, defines the API routes    
+    │       │___pgvector_utils.py   # Interacts with the PGVector vector store
+    │       │___pydantic_models.py  # Defines Pydantic models for request and response validation
+    │       │___settings.py         
+    │
+    │───frontend/
+    │    │___dockerfile
+    │    │___requirements.txt
+    │    │
+    │    └───app/
+    │        │___api_utils.py       # Interacts with FastAPI backend
+    │        │___chat_interface.py  # Chat interaction
+    │        │___sidebar.py         # Handles document management and model selection:
+    │        │___streamlit_app.py   # Entry point for Streamlit application   
+    │      
+    │___.env_example        # Example file, rename to .env
+    │___.gitignore
+    │___docker-compose.yaml  # Service orchestration
+    │___README
+    ```
 
 ## API Endpoints
 
