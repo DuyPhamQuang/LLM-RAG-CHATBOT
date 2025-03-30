@@ -37,6 +37,7 @@ The system is split into two main components:
   - [Docker Compose](https://docs.docker.com/compose/) – Container orchestration
 
 ## File Structure
+```bash
 LLM_RAG_CHATBOT/
 │
 ├───backend/
